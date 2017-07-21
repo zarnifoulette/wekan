@@ -480,6 +480,11 @@ if (Meteor.isServer) {
       Cards.direct.update({_id: paramCardId, listId: paramListId, boardId: paramBoardId, archived: false},
                 {$set: {description: newDescription}});
     }
+    if(req.body.hasOwnProperty('labelIds')){
+      const newLabel = req.body.labelIds;
+      Cards.direct.update({_id: paramCardId, listId: paramListId, boardId: paramBoardId, archived: false},
+            {$set: {labelIds: newLabel}});
+    }
     JsonRoutes.sendResult(res, {
       code: 200,
       data: {
